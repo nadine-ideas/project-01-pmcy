@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Mental da Arquitetura de Integração PAMCARY</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Dark background */
+            min-height: 100vh;
+        }
+        .node {
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            margin: 1rem;
+            cursor: default;
+        }
+        .node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+        }
+        .main-node {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6); /* Blue gradient */
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            border: 4px solid #93c5fd;
+            animation: pulse 2s infinite;
+        }
+        .pillar-node {
+            background-color: #1f2937; /* Dark gray */
+            color: #d1d5db;
+            font-weight: 600;
+            border-left: 5px solid #f97316; /* Orange marker */
+            position: relative;
+        }
+        /* Style for the new "Objetivo Principal" sub-node */
+        .objective-node {
+            background-color: #4d2d0b; /* Darker Gold/Brown */
+            color: #fcd34d; /* Light Gold */
+            font-size: 1rem;
+            font-weight: 700;
+            border-left: 5px solid #fbbf24; /* Yellow marker */
+            margin-bottom: 1rem;
+        }
+        .sub-node {
+            background-color: #374151; /* Lighter dark gray */
+            color: #e5e7eb;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            border-left: 3px solid #10b981; /* Green marker */
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        /* Responsive Layout for Mind Map */
+        @media (min-width: 1024px) {
+            .mind-map-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .main-map-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+        }
+        @media (max-width: 1023px) {
+            .mind-map-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto main-map-container">
+        <!-- Título Central -->
+        <div class="node main-node text-center w-full lg:w-2/3">
+            ARQUITETURA DE INTEGRAÇÃO PAMCARY
+            <div class="text-sm font-normal mt-1 opacity-80">(Expansão e Formalização do RD Station CRM)</div>
+        </div>
+
+        <!-- OBJETIVOS ESTRATÉGICOS (MACRO) -->
+        <div class="node text-center w-full lg:w-2/3 bg-green-800/50 border border-green-500 text-green-200 font-semibold p-4">
+            <span class="text-lg font-extrabold text-green-300">OBJETIVOS ESTRATÉGICOS (MACRO)</span>
+            <ul class="list-disc list-inside text-sm mt-2 space-y-1 text-left mx-auto w-fit">
+                <li>Escalar o RD CRM para DICOM II e DICOM IV.</li>
+                <li>Formalizar a Camada de Intermediação (iPaaS) na Fase 3.</li>
+                <li>Substituir trabalho manual de ETL (DE/PARA) por automação via integração.</li>
+            </ul>
+        </div>
+        
+        <!-- Estrutura de Conexão (Pilares) -->
+        <div class="mind-map-grid grid gap-8 w-full">
+
+            <!-- PILAR 1: Sistemas Centrais e Funis -->
+            <div class="flex flex-col">
+                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
+                    1. SISTEMAS CENTRAIS E FUNIS (RD CRM)
+                </div>
+                <div class="ml-4 mt-4 space-y-3">
+                    <!-- OBJETIVO PRINCIPAL DO PILAR 1 -->
+                    <div class="node objective-node">
+                        <span class="font-extrabold">Objetivo Principal:</span> Garantir a escalabilidade e segregação das operações de vendas (funis e equipes) dentro do RD CRM para as novas diretorias (DICOM II e DICOM IV).
+                    </div>
+                    <!-- Detalhes do Pilar -->
+                    <div class="node sub-node">
+                        <span class="font-bold text-yellow-400">Escopo:</span> Escalar a implementação para <span class="text-white">DICOM II & DICOM IV</span>.
+                    </div>
+                    <div class="node sub-node">
+                        <span class="font-bold text-yellow-400">Necessidade:</span> Criar novos funis e segregação de equipes (e.g., "Vendas Transporte DICOM II").
+                    </div>
+                    <div class="node sub-node">
+                        <span class="font-bold text-yellow-400">Desafio Atual:</span> Integração olha apenas o sufixo "Vendas Transportes", não segmenta por filial/diretoria.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PILAR 2: Integrações Chave (Sistemas Conectados) -->
+            <div class="flex flex-col">
+                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
+                    2. INTEGRAÇÕES CHAVE (Sistemas Conectados)
+                </div>
+                <div class="ml-4 mt-4 space-y-3">
+                     <!-- OBJETIVO PRINCIPAL DO PILAR 2 -->
+                    <div class="node objective-node">
+                        <span class="font-extrabold">Objetivo Principal:</span> Automatizar a comunicação de dados entre o RD CRM e sistemas críticos (CRM Web e Quiver), eliminando a necessidade de processos manuais de DE/PARA.
+                    </div>
+                    <!-- Detalhes do Pilar -->
+                    <div class="node sub-node p-3 border-l-4 border-l-sky-500">
+                        <span class="font-bold text-sky-400">CRM Web (Interno):</span> Mapeamento automático do campo <span class="text-white">Responsável</span> (Hierarquia), eliminando DE/PARA manual.
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-sky-500">
+                        <span class="font-bold text-sky-400">Quiver (Externo):</span> Automatizar DE/PARA de <span class="text-white">Campanha</span> e <span class="text-white">Motivo de Perda</span> (Funil Caminhão - GEAVE).
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-sky-500">
+                        <span class="font-bold text-sky-400">SIGS (Interno):</span> Comunicação direta (Cotação/Proposta) é uma <span class="text-white">Ideia de Futuro</span>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PILAR 3: Camada de Integração e Componentes Técnicos -->
+            <div class="flex flex-col">
+                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
+                    3. CAMADA DE INTEGRAÇÃO (iPaaS/Middleware)
+                </div>
+                <div class="ml-4 mt-4 space-y-3">
+                    <!-- OBJETIVO PRINCIPAL DO PILAR 3 -->
+                    <div class="node objective-node">
+                        <span class="font-extrabold">Objetivo Principal:</span> Formalizar e implementar uma camada de intermediação (iPaaS/Middleware) para centralizar a lógica de transformação de dados (DE/PARA) e garantir a segurança das APIs.
+                    </div>
+                    <!-- Detalhes do Pilar -->
+                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
+                        <span class="font-bold text-pink-400">Mecanismo:</span> APIs (Padrão <span class="text-white">REST</span>) - Até 3 APIs na Fase 3.
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
+                        <span class="font-bold text-pink-400">iPaaS:</span> Plataforma de Integração (Previsão: <span class="text-white">Fase 3 do Onboarding</span>).
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
+                        <span class="font-bold text-pink-400">Função Central:</span> Mapeamento e Transformação de Dados (DE/PARA).
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
+                        <span class="font-bold text-pink-400">Segurança:</span> Autenticação via <span class="text-white">MAAS</span> e <span class="text-white">Keycloak</span> (Bearer/Basic).
+                    </div>
+                </div>
+            </div>
+
+            <!-- PILAR 4: Mapeamento de Dados (DE/PARA) e Regras -->
+            <div class="flex flex-col">
+                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
+                    4. MAPEAMENTO DE DADOS (DE/PARA) E REGRAS
+                </div>
+                <div class="ml-4 mt-4 space-y-3">
+                    <!-- OBJETIVO PRINCIPAL DO PILAR 4 -->
+                    <div class="node objective-node">
+                        <span class="font-extrabold">Objetivo Principal:</span> Substituir o trabalho manual de ETL por automação, implementando regras de DE/PARA que considerem as novas estruturas (Diretoria/Filial) e requisitos de campo (Customizados).
+                    </div>
+                    <!-- Detalhes do Pilar -->
+                    <div class="node sub-node p-3 border-l-4 border-l-indigo-500">
+                        <span class="font-bold text-indigo-400">Regra Hierarquia:</span> Incluir campos <span class="text-white">Diretoria</span> e <span class="text-white">Filial</span> no DE/PARA (<span class="text-sm italic">trds_depara_crm_hierarquia</span>).
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-indigo-500">
+                        <span class="font-bold text-indigo-400">Regra Campanha/Motivo de Perda:</span> Permitir cadastro direto no RD (<span class="text-sm italic">trds_depara_crm_campanha/mot_perda</span>).
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-indigo-500">
+                        <span class="font-bold text-indigo-400">Campos Personalizados:</span> Cruciais para integração (ex: endereço). Devem manter o formato do CRM Web e <span class="text-red-400">NÃO podem usar autofill</span> (Google Maps).
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+</html>
