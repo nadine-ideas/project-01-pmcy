@@ -1,239 +1,288 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa Mental da Arquitetura de Integração PAMCARY</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0d1117; /* Dark background */
-            min-height: 100vh;
-        }
-        .node {
-            padding: 1rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
-            margin: 1rem;
-            cursor: default;
-        }
-        .node:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
-        }
-        .main-node {
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6); /* Blue gradient */
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 800;
-            border: 4px solid #93c5fd;
-            animation: pulse 2s infinite;
-        }
-        .pillar-node {
-            background-color: #1f2937; /* Dark gray */
-            color: #d1d5db;
-            font-weight: 600;
-            border-left: 5px solid #f97316; /* Orange marker */
-            position: relative;
-        }
-        /* Style for the new "Objetivo Principal" sub-node */
-        .objective-node {
-            background-color: #4d2d0b; /* Darker Gold/Brown */
-            color: #fcd34d; /* Light Gold */
-            font-size: 1rem;
-            font-weight: 700;
-            border-left: 5px solid #fbbf24; /* Yellow marker */
-            margin-bottom: 1rem;
-        }
-        .sub-node {
-            background-color: #374151; /* Lighter dark gray */
-            color: #e5e7eb;
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-            border-left: 3px solid #10b981; /* Green marker */
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-        }
-        
-        /* Links de Documentação */
-        .doc-link {
-            color: #93c5fd; /* Light blue for links */
-            text-decoration: underline;
-            font-weight: 600;
-            cursor: pointer;
-            margin-left: 5px;
-            font-size: 0.75rem; /* Smaller font for the link reference */
-            vertical-align: super;
-        }
-        .doc-link:hover {
-            color: #60a5fa;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Mental da Arquitetura de Integração PAMCARY</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Dark background */
+            min-height: 100vh;
+        }
+        .node {
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            margin: 1rem;
+            cursor: default;
+        }
+        .node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+        }
+        .main-node {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6); /* Blue gradient */
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            border: 4px solid #93c5fd;
+            animation: pulse 2s infinite;
+        }
+        .pillar-node {
+            background-color: #1f2937; /* Dark gray */
+            color: #d1d5db;
+            font-weight: 600;
+            border-left: 5px solid #f97316; /* Orange marker */
+            position: relative;
+        }
+        /* Style for the new "Objetivo Principal" sub-node */
+        .objective-node {
+            background-color: #4d2d0b; /* Darker Gold/Brown */
+            color: #fcd34d; /* Light Gold */
+            font-size: 1rem;
+            font-weight: 700;
+            border-left: 5px solid #fbbf24; /* Yellow marker */
+            margin-bottom: 1rem;
+        }
+        .sub-node {
+            background-color: #374151; /* Lighter dark gray */
+            color: #e5e7eb;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            border-left: 3px solid #10b981; /* Green marker */
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        
+        /* Links de Documentação */
+        .doc-link {
+            color: #93c5fd; /* Light blue for links */
+            text-decoration: underline;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.75rem; /* Smaller font for the link reference */
+            vertical-align: super;
+        }
+        .doc-link:hover {
+            color: #60a5fa;
+        }
 
-        /* Responsive Layout for Mind Map */
-        @media (min-width: 1024px) {
-            .mind-map-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .main-map-container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 2rem;
-            }
-        }
-        @media (max-width: 1023px) {
-            .mind-map-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        /* Responsive Layout for Mind Map */
+        @media (min-width: 1024px) {
+            .mind-map-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .main-map-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+        }
+        @media (max-width: 1023px) {
+            .mind-map-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
-    </style>
+    </style>
 </head>
 <body class="p-4 sm:p-8">
 
-    <div class="max-w-7xl mx-auto main-map-container">
-        <div class="node main-node text-center w-full lg:w-2/3">
-            ARQUITETURA DE INTEGRAÇÃO PAMCARY
-            <a href="#uploaded:[Pamcary] Bloco de Notas" class="doc-link" title="Contexto e Objetivos (Bloco de Notas)">[Contexto/KO]</a>
-            <div class="text-sm font-normal mt-1 opacity-80">
-                (Expansão e Formalização do RD Station CRM)
-                <a href="#uploaded:Pamcary_Contrato_-_8DHubify_.pdf" class="doc-link" title="Escopo Contratado">[Contrato]</a>
-            </div>
-        </div>
-
-        <div class="node text-center w-full lg:w-2/3 bg-green-800/50 border border-green-500 text-green-200 font-semibold p-4">
-            <span class="text-lg font-extrabold text-green-300">
-                OBJETIVOS ESTRATÉGICOS (MACRO)
-                <a href="#uploaded:[Pamcary] Transcrições de todas as calls" class="doc-link" title="Visão Geral/Discussões das Calls">[Calls]</a>
-            </span>
-            <ul class="list-disc list-inside text-sm mt-2 space-y-1 text-left mx-auto w-fit">
-                <li>
-                    Escalar o RD CRM para DICOM II e DICOM IV.
-                    <a href="#uploaded:[Pamcary] Transcrições de todas as calls" class="doc-link" title="Discussão de Escopo: DICOMs II e IV">[Calls]</a>
-                </li>
-                <li>
-                    Formalizar a Camada de Intermediação (iPaaS) na Fase 3.
-                    <a href="#uploaded:Modelo_Arquitetura_Pamcary.pdf" class="doc-link" title="Modelo de Arquitetura - Fluxo e Componentes">[Arquitetura]</a>
-                </li>
-                <li>
-                    Substituir trabalho manual de ETL (DE/PARA) por automação via integração.
-                    <a href="#uploaded:[Pamcary] Bloco de Notas" class="doc-link" title="Objetivo da Automação DE/PARA">[Bloco Notas]</a>
-                </li>
-            </ul>
-        </div>
+    <div class="max-w-7xl mx-auto main-map-container">
+        <div class="node main-node text-center w-full lg:w-2/3">
+            ARQUITETURA DE INTEGRAÇÃO PAMCARY
+            <a href="uploaded:[Pamcary] Bloco de Notas" class="doc-link" title="Contexto e Objetivos (Bloco de Notas)">[Contexto/KO]</a>
+            <div class="text-sm font-normal mt-1 opacity-80">
+                (Expansão e Formalização do RD Station CRM)
+                <a href="uploaded:Pamcary_Contrato_-_8DHubify_.pdf" class="doc-link" title="Escopo Contratado">[Contrato]</a>
+            </div>
+        </div>
         
-        <div class="mind-map-grid grid gap-8 w-full">
-
-            <div class="flex flex-col">
-                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
-                    1. SISTEMAS CENTRAIS E FUNIS (RD CRM)
+        <div class="node text-left w-full lg:w-2/3 bg-gray-800/80 border border-gray-600 text-gray-200 font-semibold p-4">
+            <p class="text-xl font-extrabold text-white mb-3">Links Importantes</p>
+            <p class="text-sm mb-4">
+                <span class="text-yellow-400 font-extrabold">🚨 NOTA DO ANALISTA:</span> Por favor, leia atentamente o <a href="uploaded:[Pamcary] Bloco de Notas" class="doc-link text-red-400 hover:text-red-300">Bloco de Notas</a> e os demais documentos abaixo para ter a visão completa do escopo e do histórico de decisões.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+                <div class="p-2 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-blue-500 transition duration-300">
+                    <span class="text-blue-400">Contexto/Escopo:</span> <a href="uploaded:[Pamcary] Bloco de Notas" class="doc-link text-blue-300 hover:text-blue-100">[Pamcary] Bloco de Notas</a>
                 </div>
-                <div class="ml-4 mt-4 space-y-3">
-                    <div class="node objective-node">
-                        <span class="font-extrabold">Objetivo Principal:</span> Garantir a escalabilidade e segregação das operações de vendas (funis e equipes) dentro do RD CRM para as novas diretorias (DICOM II e DICOM IV).
-                        <a href="#uploaded:[Pamcary] Transcrições de todas as calls" class="doc-link" title="Discussões sobre Funis e Escopo DICOM">[Calls]</a>
-                    </div>
-                    <div class="node sub-node">
-                        <span class="font-bold text-yellow-400">Escopo:</span> Escalar a implementação para <span class="text-white">DICOM II & DICOM IV</span>.
-                        <a href="#uploaded:[Pamcary] Kick Off" class="doc-link" title="Escopo Inicial de Integração">[KickOff]</a>
-                    </div>
-                    <div class="node sub-node">
-                        <span class="font-bold text-yellow-400">Necessidade:</span> Criar novos funis e segregação de equipes (e.g., "Vendas Transporte DICOM II").
-                        <a href="#uploaded:[Pamcary] Bloco de Notas" class="doc-link" title="Detalhe das Demandas (DIRECOMs)">[Bloco Notas]</a>
-                    </div>
-                    <div class="node sub-node">
-                        <span class="font-bold text-yellow-400">Desafio Atual:</span> Integração olha apenas o sufixo "Vendas Transportes", não segmenta por filial/diretoria.
-                        <a href="#uploaded:[Pamcary] Transcrições de todas as calls" class="doc-link" title="Discussão sobre segregação de funil na Call">[Calls]</a>
-                    </div>
+                <div class="p-2 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-blue-500 transition duration-300">
+                    <span class="text-blue-400">Contrato Formal:</span> <a href="uploaded:Pamcary_Contrato_-_8DHubify_.pdf" class="doc-link text-blue-300 hover:text-blue-100">Pamcary_Contrato_-_8DHubify_.pdf</a>
                 </div>
-            </div>
-
-            <div class="flex flex-col">
-                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
-                    2. INTEGRAÇÕES CHAVE (Sistemas Conectados)
+                <div class="p-2 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-blue-500 transition duration-300">
+                    <span class="text-blue-400">Reuniões/Decisões:</span> <a href="uploaded:[Pamcary] Transcrições de todas as calls" class="doc-link text-blue-300 hover:text-blue-100">[Pamcary] Transcrições de todas as calls</a>
                 </div>
-                <div class="ml-4 mt-4 space-y-3">
-                    <div class="node objective-node">
-                        <span class="font-extrabold">Objetivo Principal:</span> Automatizar a comunicação de dados entre o RD CRM e sistemas críticos (CRM Web e Quiver), eliminando a necessidade de processos manuais de DE/PARA.
-                        <a href="#uploaded:(ATUALIZADO) Levantamento de Requisitos - Integração_RDStation_2025_08_21_Versão2_DICOM_I_Homologação -.pdf" class="doc-link" title="Levantamento de Requisitos - DICOM I">[Levant. Reqs.]</a>
-                    </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-sky-500">
-                        <span class="font-bold text-sky-400">CRM Web (Interno):</span> Mapeamento automático do campo <span class="text-white">Responsável</span> (Hierarquia), eliminando DE/PARA manual.
-                        <a href="#uploaded:Doc_TécnicoAPIs - Cadastro_2025_02_28.pdf" class="doc-link" title="Doc Técnico - Cadastro CRM Web">[Doc API Cadastro]</a>
-                    </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-sky-500">
-                        <span class="font-bold text-sky-400">Quiver (Externo):</span> Automatizar DE/PARA de <span class="text-white">Campanha</span> e <span class="text-white">Motivo de Perda</span> (Funil Caminhão - GEAVE).
-                        <a href="#uploaded:Doc_Técnico_APIs - CadastroLeads_Cards_do_Funil_de_Vendas_2025_03_14.pdf" class="doc-link" title="Doc Técnico - Leads/Cards Quiver">[Doc API Leads]</a>
-                    </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-sky-500">
-                        <span class="font-bold text-sky-400">SIGS (Interno):</span> Comunicação direta (Cotação/Proposta) é uma <span class="text-white">Ideia de Futuro</span>.
-                        <a href="#uploaded:(ATUALIZADO) Levantamento de Requisitos - Integração_RDStation_2025_08_21_Versão2_DICOM_I_Homologação -.pdf" class="doc-link" title="Referência a Ideia de Futuro/SIGS">[Levant. Reqs.]</a>
-                    </div>
+                
+                <div class="p-2 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-blue-500 transition duration-300">
+                    <span class="text-blue-400">Kick Off Oficial:</span> <a href="uploaded:[Pamcary] Kick Off" class="doc-link text-blue-300 hover:text-blue-100">[Pamcary] Kick Off</a>
+                </div>
+                <div class="p-2 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-blue-500 transition duration-300">
+                    <span class="text-blue-400">Arq. Técnica:</span> <a href="uploaded:Modelo_Arquitetura_Pamcary.pdf" class="doc-link text-blue-300 hover:text-blue-100">Modelo de Arquitetura</a>
+                </div>
+                <div class="p-2 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-blue-500 transition duration-300">
+                    <span class="text-blue-400">Lev. Requisitos:</span> <a href="uploaded:(ATUALIZADO) Levantamento de Requisitos - Integração_RDStation_2025_08_21_Versão2_DICOM_I_Homologação -.pdf" class="doc-link text-blue-300 hover:text-blue-100">DICOM I - Levantamento de Requisitos</a>
+                </div>
+                
+                <div class="p-2 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-blue-500 transition duration-300">
+                    <span class="text-blue-400">Docs APIs (Cadastro):</span> <a href="uploaded:Doc_TécnicoAPIs - Cadastro_2025_02_28.pdf" class="doc-link text-blue-300 hover:text-blue-100">Doc. API - Cadastro CRM Web</a>
+                </div>
+                <div class="p-2 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-blue-500 transition duration-300">
+                    <span class="text-blue-400">Docs APIs (Leads):</span> <a href="uploaded:Doc_Técnico_APIs - CadastroLeads_Cards_do_Funil_de_Vendas_2025_03_14.pdf" class="doc-link text-blue-300 hover:text-blue-100">Doc. API - Leads/Cards Quiver</a>
+                </div>
+                <div class="p-2 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-blue-500 transition duration-300">
+                    <span class="text-blue-400">Setup Estratégico:</span> <a href="https://www.figma.com/board/ZYLmrhTRdbLhJNyaPc7Una/Implanta%C3%A7%C3%A3o--PEACE-%7C-PAMCARY?node-id=2-2&p=f&t=9fr6vxQ3OpfVNTxa-0" target="_blank" class="doc-link text-blue-300 hover:text-blue-100">Figma Board (Setup)</a>
+                </div>
+                
+                <div class="p-2 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-blue-500 transition duration-300">
+                    <span class="text-blue-400">DexPara (Hierarquia):</span> <a href="uploaded:DexPara_Projeto_DICOM_I_INTEGRAÇÃORDSTATION_2025_08_11.xlsx - HIERARQUIA_TRANSPORTE_RD_CRMWEB.csv" class="doc-link text-blue-300 hover:text-blue-100">DexPara HIERARQUIA</a>
+                </div>
+                <div class="p-2 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-blue-500 transition duration-300 col-span-2">
+                    <span class="text-blue-400">Reuniões Comerciais Adicionais (Externo):</span> 
+                    <a href="https://app.meetrox.ai/shared-calls/zgAemLeWYN5d5Z0v6V_pJA" target="_blank" class="doc-link text-blue-300 hover:text-blue-100">Call 1</a> | 
+                    <a href="https://app.meetrox.ai/shared-calls/trUORFquzHVTxcJtd5fZ4g" target="_blank" class="doc-link text-blue-300 hover:text-blue-100">Call 2</a> |
+                    <a href="https://app.meetrox.ai/shared-calls/i2ve7UK2bP72Xpp3LjmBWg" target="_blank" class="doc-link text-blue-300 hover:text-blue-100">Call 3</a>
                 </div>
             </div>
-
-            <div class="flex flex-col">
-                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
-                    3. CAMADA DE INTEGRAÇÃO (iPaaS/Middleware)
-                </div>
-                <div class="ml-4 mt-4 space-y-3">
-                    <div class="node objective-node">
-                        <span class="font-extrabold">Objetivo Principal:</span> Formalizar e implementar uma camada de intermediação (iPaaS/Middleware) para centralizar a lógica de transformação de dados (DE/PARA) e garantir a segurança das APIs.
-                        <a href="#uploaded:[Pamcary] Transcrições de todas as calls" class="doc-link" title="Discussão sobre Plataforma Intermediadora">[Calls]</a>
-                    </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
-                        <span class="font-bold text-pink-400">Mecanismo:</span> APIs (Padrão <span class="text-white">REST</span>) - Até 3 APIs na Fase 3.
-                        <a href="#uploaded:Doc_TécnicoAPIs - Cadastro_2025_02_28.pdf" class="doc-link" title="Referência Geral aos Docs Técnicos APIs">[Docs APIs]</a>
-                    </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
-                        <span class="font-bold text-pink-400">iPaaS:</span> Plataforma de Integração (Previsão: <span class="text-white">Fase 3 do Onboarding</span>).
-                        <a href="#uploaded:[Pamcary] Kick Off" class="doc-link" title="Cronograma Onboarding">[KickOff]</a>
-                    </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
-                        <span class="font-bold text-pink-400">Função Central:</span> Mapeamento e Transformação de Dados (DE/PARA).
-                        <a href="#uploaded:Modelo_Arquitetura_Pamcary.pdf" class="doc-link" title="Localização da Lógica de Negócio">[Arquitetura]</a>
-                    </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
-                        <span class="font-bold text-pink-400">Segurança:</span> Autenticação via <span class="text-white">MAAS</span> e <span class="text-white">Keycloak</span> (Bearer/Basic).
-                        <a href="#uploaded:Modelo_Arquitetura_Pamcary.pdf" class="doc-link" title="Autenticação e Segurança (MAAS/Keycloak)">[Arquitetura]</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col">
-                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
-                    4. MAPEAMENTO DE DADOS (DE/PARA) E REGRAS
-                </div>
-                <div class="ml-4 mt-4 space-y-3">
-                    <div class="node objective-node">
-                        <span class="font-extrabold">Objetivo Principal:</span> Substituir o trabalho manual de ETL por automação, implementando regras de DE/PARA que considerem as novas estruturas (Diretoria/Filial) e requisitos de campo (Customizados).
-                        <a href="#uploaded:[Pamcary] Bloco de Notas" class="doc-link" title="Objetivo dos DexPara listados">[Bloco Notas]</a>
-                    </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-indigo-500">
-                        <span class="font-bold text-indigo-400">Regra Hierarquia:</span> Incluir campos <span class="text-white">Diretoria</span> e <span class="text-white">Filial</span> no DE/PARA (<span class="text-sm italic">trds_depara_crm_hierarquia</span>).
-                        <a href="#DexPara_Projeto_DICOM_I_INTEGRAÇÃORDSTATION_2025_08_11.xlsx - HIERARQUIA_TRANSPORTE_RD_CRMWEB.csv" class="doc-link" title="Tabela DE/PARA Hierarquia">[DexPara-Hier.]</a>
-                    </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-indigo-500">
-                        <span class="font-bold text-indigo-400">Regra Campanha/Motivo de Perda:</span> Permitir cadastro direto no RD (<span class="text-sm italic">trds_depara_crm_campanha/mot_perda</span>).
-                        <a href="#DexPara_Projeto_DICOM_I_INTEGRAÇÃORDSTATION_2025_08_11.xlsx - CAMPANHA_CAMINHÃO_RD_QUIVER.csv" class="doc-link" title="Tabela DE/PARA Campanha">[DexPara-Camp.]</a>
-                        <a href="#DexPara_Projeto_DICOM_I_INTEGRAÇÃORDSTATION_2025_08_11.xlsx - MOTIVO_PERDA_CAMINHÃO_QUIVER_RD.csv" class="doc-link" title="Tabela DE/PARA Motivo Perda">[DexPara-Mot.P]</a>
-                    </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-indigo-500">
-                        <span class="font-bold text-indigo-400">Campos Personalizados:</span> Cruciais para integração (ex: endereço). Devem manter o formato do CRM Web e <span class="text-red-400">NÃO podem usar autofill</span> (Google Maps).
-                        <a href="#uploaded:[Pamcary] Transcrições de todas as calls" class="doc-link" title="Alinhamento Específico de Campo Customizado">[Calls/Requisitos]</a>
-                    </div>
-                </div>
-            </div>
-            
         </div>
-    </div>
+
+        <div class="node text-center w-full lg:w-2/3 bg-green-800/50 border border-green-500 text-green-200 font-semibold p-4">
+            <span class="text-lg font-extrabold text-green-300">
+                OBJETIVOS ESTRATÉGICOS (MACRO)
+                <a href="uploaded:[Pamcary] Transcrições de todas as calls" class="doc-link" title="Visão Geral/Discussões das Calls">[Calls]</a>
+            </span>
+            <ul class="list-disc list-inside text-sm mt-2 space-y-1 text-left mx-auto w-fit">
+                <li>
+                    Escalar o RD CRM para DICOM II e DICOM IV.
+                    <a href="uploaded:[Pamcary] Transcrições de todas as calls" class="doc-link" title="Discussão de Escopo: DICOMs II e IV">[Calls]</a>
+                </li>
+                <li>
+                    Formalizar a Camada de Intermediação (iPaaS) na Fase 3.
+                    <a href="uploaded:Modelo_Arquitetura_Pamcary.pdf" class="doc-link" title="Modelo de Arquitetura - Fluxo e Componentes">[Arquitetura]</a>
+                </li>
+                <li>
+                    Substituir trabalho manual de ETL (DE/PARA) por automação via integração.
+                    <a href="uploaded:[Pamcary] Bloco de Notas" class="doc-link" title="Objetivo da Automação DE/PARA">[Bloco Notas]</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="mind-map-grid grid gap-8 w-full">
+
+            <div class="flex flex-col">
+                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
+                    1. SISTEMAS CENTRAIS E FUNIS (RD CRM)
+                </div>
+                <div class="ml-4 mt-4 space-y-3">
+                    <div class="node objective-node">
+                        <span class="font-extrabold">Objetivo Principal:</span> Garantir a escalabilidade e segregação das operações de vendas (funis e equipes) dentro do RD CRM para as novas diretorias (DICOM II e DICOM IV).
+                        <a href="uploaded:[Pamcary] Transcrições de todas as calls" class="doc-link" title="Discussões sobre Funis e Escopo DICOM">[Calls]</a>
+                    </div>
+                    <div class="node sub-node">
+                        <span class="font-bold text-yellow-400">Escopo:</span> Escalar a implementação para <span class="text-white">DICOM II & DICOM IV</span>.
+                        <a href="uploaded:[Pamcary] Kick Off" class="doc-link" title="Escopo Inicial de Integração">[KickOff]</a>
+                    </div>
+                    <div class="node sub-node">
+                        <span class="font-bold text-yellow-400">Necessidade:</span> Criar novos funis e segregação de equipes (e.g., "Vendas Transporte DICOM II").
+                        <a href="uploaded:[Pamcary] Bloco de Notas" class="doc-link" title="Detalhe das Demandas (DIRECOMs)">[Bloco Notas]</a>
+                    </div>
+                    <div class="node sub-node">
+                        <span class="font-bold text-yellow-400">Desafio Atual:</span> Integração olha apenas o sufixo "Vendas Transportes", não segmenta por filial/diretoria.
+                        <a href="uploaded:[Pamcary] Transcrições de todas as calls" class="doc-link" title="Discussão sobre segregação de funil na Call">[Calls]</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col">
+                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
+                    2. INTEGRAÇÕES CHAVE (Sistemas Conectados)
+                </div>
+                <div class="ml-4 mt-4 space-y-3">
+                    <div class="node objective-node">
+                        <span class="font-extrabold">Objetivo Principal:</span> Automatizar a comunicação de dados entre o RD CRM e sistemas críticos (CRM Web e Quiver), eliminando a necessidade de processos manuais de DE/PARA.
+                        <a href="uploaded:(ATUALIZADO) Levantamento de Requisitos - Integração_RDStation_2025_08_21_Versão2_DICOM_I_Homologação -.pdf" class="doc-link" title="Levantamento de Requisitos - DICOM I">[Levant. Reqs.]</a>
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-sky-500">
+                        <span class="font-bold text-sky-400">CRM Web (Interno):</span> Mapeamento automático do campo <span class="text-white">Responsável</span> (Hierarquia), eliminando DE/PARA manual.
+                        <a href="uploaded:Doc_TécnicoAPIs - Cadastro_2025_02_28.pdf" class="doc-link" title="Doc Técnico - Cadastro CRM Web">[Doc API Cadastro]</a>
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-sky-500">
+                        <span class="font-bold text-sky-400">Quiver (Externo):</span> Automatizar DE/PARA de <span class="text-white">Campanha</span> e <span class="text-white">Motivo de Perda</span> (Funil Caminhão - GEAVE).
+                        <a href="uploaded:Doc_Técnico_APIs - CadastroLeads_Cards_do_Funil_de_Vendas_2025_03_14.pdf" class="doc-link" title="Doc Técnico - Leads/Cards Quiver">[Doc API Leads]</a>
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-sky-500">
+                        <span class="font-bold text-sky-400">SIGS (Interno):</span> Comunicação direta (Cotação/Proposta) é uma <span class="text-white">Ideia de Futuro</span>.
+                        <a href="uploaded:(ATUALIZADO) Levantamento de Requisitos - Integração_RDStation_2025_08_21_Versão2_DICOM_I_Homologação -.pdf" class="doc-link" title="Referência a Ideia de Futuro/SIGS">[Levant. Reqs.]</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col">
+                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
+                    3. CAMADA DE INTEGRAÇÃO (iPaaS/Middleware)
+                </div>
+                <div class="ml-4 mt-4 space-y-3">
+                    <div class="node objective-node">
+                        <span class="font-extrabold">Objetivo Principal:</span> Formalizar e implementar uma camada de intermediação (iPaaS/Middleware) para centralizar a lógica de transformação de dados (DE/PARA) e garantir a segurança das APIs.
+                        <a href="uploaded:[Pamcary] Transcrições de todas as calls" class="doc-link" title="Discussão sobre Plataforma Intermediadora">[Calls]</a>
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
+                        <span class="font-bold text-pink-400">Mecanismo:</span> APIs (Padrão <span class="text-white">REST</span>) - Até 3 APIs na Fase 3.
+                        <a href="uploaded:Doc_TécnicoAPIs - Cadastro_2025_02_28.pdf" class="doc-link" title="Referência Geral aos Docs Técnicos APIs">[Docs APIs]</a>
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
+                        <span class="font-bold text-pink-400">iPaaS:</span> Plataforma de Integração (Previsão: <span class="text-white">Fase 3 do Onboarding</span>).
+                        <a href="uploaded:[Pamcary] Kick Off" class="doc-link" title="Cronograma Onboarding">[KickOff]</a>
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
+                        <span class="font-bold text-pink-400">Função Central:</span> Mapeamento e Transformação de Dados (DE/PARA).
+                        <a href="uploaded:Modelo_Arquitetura_Pamcary.pdf" class="doc-link" title="Localização da Lógica de Negócio">[Arquitetura]</a>
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
+                        <span class="font-bold text-pink-400">Segurança:</span> Autenticação via <span class="text-white">MAAS</span> e <span class="text-white">Keycloak</span> (Bearer/Basic).
+                        <a href="uploaded:Modelo_Arquitetura_Pamcary.pdf" class="doc-link" title="Autenticação e Segurança (MAAS/Keycloak)">[Arquitetura]</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col">
+                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
+                    4. MAPEAMENTO DE DADOS (DE/PARA) E REGRAS
+                </div>
+                <div class="ml-4 mt-4 space-y-3">
+                    <div class="node objective-node">
+                        <span class="font-extrabold">Objetivo Principal:</span> Substituir o trabalho manual de ETL por automação, implementando regras de DE/PARA que considerem as novas estruturas (Diretoria/Filial) e requisitos de campo (Customizados).
+                        <a href="uploaded:[Pamcary] Bloco de Notas" class="doc-link" title="Objetivo dos DexPara listados">[Bloco Notas]</a>
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-indigo-500">
+                        <span class="font-bold text-indigo-400">Regra Hierarquia:</span> Incluir campos <span class="text-white">Diretoria</span> e <span class="text-white">Filial</span> no DE/PARA (<span class="text-sm italic">trds_depara_crm_hierarquia</span>).
+                        <a href="uploaded:DexPara_Projeto_DICOM_I_INTEGRAÇÃORDSTATION_2025_08_11.xlsx - HIERARQUIA_TRANSPORTE_RD_CRMWEB.csv" class="doc-link" title="Tabela DE/PARA Hierarquia">[DexPara-Hier.]</a>
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-indigo-500">
+                        <span class="font-bold text-indigo-400">Regra Campanha/Motivo de Perda:</span> Permitir cadastro direto no RD (<span class="text-sm italic">trds_depara_crm_campanha/mot_perda</span>).
+                        <a href="uploaded:DexPara_Projeto_DICOM_I_INTEGRAÇÃORDSTATION_2025_08_11.xlsx - CAMPANHA_CAMINHÃO_RD_QUIVER.csv" class="doc-link" title="Tabela DE/PARA Campanha">[DexPara-Camp.]</a>
+                        <a href="uploaded:DexPara_Projeto_DICOM_I_INTEGRAÇÃORDSTATION_2025_08_11.xlsx - MOTIVO_PERDA_CAMINHÃO_QUIVER_RD.csv" class="doc-link" title="Tabela DE/PARA Motivo Perda">[DexPara-Mot.P]</a>
+                    </div>
+                    <div class="node sub-node p-3 border-l-4 border-l-indigo-500">
+                        <span class="font-bold text-indigo-400">Campos Personalizados:</span> Cruciais para integração (ex: endereço). Devem manter o formato do CRM Web e <span class="text-red-400">NÃO podem usar autofill</span> (Google Maps).
+                        <a href="uploaded:[Pamcary] Transcrições de todas as calls" class="doc-link" title="Alinhamento Específico de Campo Customizado">[Calls/Reunião]</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </body>
 </html>
