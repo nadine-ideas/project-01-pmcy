@@ -129,7 +129,7 @@
                 <div class="node text-left w-full lg:w-2/3 bg-gray-800/80 border border-gray-600 text-gray-200 font-semibold p-4">            
             <p class="text-xl font-extrabold text-white mb-3">🔗 Links Importantes</p>            
             <p class="text-sm mb-4">                
-                <span class="text-yellow-400 font-extrabold">🚨 NOTA DO ANALISTA:</span> Por favor, leia atentamente o <a href="https://docs.google.com/document/d/1sP085Bb-Pb4xUkrrj23Rqrk8LGlbgBndLwU_gfKYGpw/edit?tab=t.0" target="_blank" class="doc-link text-red-400 hover:text-red-300">Bloco de Notas</a> e os demais documentos abaixo para ter a visão completa do escopo e do histórico de decisões.            
+                <span class="text-yellow-400 font-extrabold">🚨 NOTA DO ANALISTA:</span> Por favor, leia atentamente o <a href="https://docs.google.com/document/d/1sP085Bb-Pb4xUkrrj23Rqrk8LGlbgBndLwU_gfKYGpw/edit?tab=t.0" target="_blank" class="doc-link text-red-300 hover:text-red-200">Bloco de Notas</a> e os demais documentos abaixo para ter a visão completa do escopo e do histórico de decisões.            
             </p>            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
                 
@@ -190,7 +190,7 @@
                         <span class="font-bold text-yellow-400">Necessidade:</span> Criar novos funis e segregação de equipes (e.g., "Vendas Transporte DICOM II").
                     </div>
                     <div class="sub-node-item">
-                        <span class="font-bold text-yellow-400">Desafio Atual:</span> Integração olha apenas o sufixo "Vendas Transportes", não segmenta por filial/diretoria.
+nbsp;                 <span class="font-bold text-yellow-400">Desafio Atual:</span> Integração olha apenas o sufixo "Vendas Transportes", não segmenta por filial/diretoria.
                     </div>
                 </div>
             </div>
@@ -221,7 +221,7 @@
                     3. CAMADA DE INTEGRAÇÃO (iPaaS/Middleware)
                 </div>
                 <div class="node objective-node p-3">
-                    <span class="font-extrabold">Objetivo Principal:</span> Formalizar e implementar uma camada de intermediação (iPaaS/Middleware) para centralizar a lógica de transformação de dados (DE/PARA) e garantir a segurança das APIs.
+A               <span class="font-extrabold">Objetivo Principal:</span> Formalizar e implementar uma camada de intermediação (iPaaS/Middleware) para centralizar a lógica de transformação de dados (DE/PARA) e garantir a segurança das APIs.
                 </div>
                 
                                 <div class="sub-node-box space-y-2">
@@ -235,10 +235,9 @@
                         <span class="font-bold text-pink-400">Função Central:</span> Mapeamento e Transformação de Dados (DE/PARA).
                     </div>
                     <div class="sub-node-item border-l-3 border-l-pink-500">
-                        <span class="font-bold text-pink-400">Segurança:</span> Autenticação via <span class="text-white font-semibold">MAAS</span> e <span class="text-white font-semibold">Keycloak</span> (Bearer/Basic).
+Também               <span class="font-bold text-pink-400">Segurança:</span> Autenticação via <span class="text-white font-semibold">MAAS</span> e <span class="text-white font-semibold">Keycloak</span> (Bearer/Basic).
                     </div>
                 </div>
-            </div>
 
                         <div class="flex flex-col">
                 <div class="node pillar-node text-xl p-3">
@@ -251,18 +250,79 @@
                                 <div class="sub-node-box space-y-2">
                     <div class="sub-node-item border-l-3 border-l-indigo-500">
                         <span class="font-bold text-indigo-400">Regra Hierarquia:</span> Incluir campos <span class="text-white font-semibold">Diretoria</span> e <span class="text-white font-semibold">Filial</span> no DE/PARA (<span class="text-sm italic">trds_depara_crm_hierarquia</span>).
-                    </div>
+A               </div>
                     <div class="sub-node-item border-l-3 border-l-indigo-500">
                         <span class="font-bold text-indigo-400">Regra Campanha/Motivo de Perda:</span> Permitir cadastro direto no RD (<span class="text-sm italic">trds_depara_crm_campanha/mot_perda</span>).
-                    </div>
+A               </div>
                     <div class="sub-node-item border-l-3 border-l-indigo-500">
-                        <span class="font-bold text-indigo-400">Campos Personalizados:</span> Cruciais para integração (ex: endereço). Devem manter o formato do CRM Web e <span class="text-red-400 font-semibold">NÃO podem usar autofill</span> (Google Maps).
-                    </div>
+                        <span class="font-bold text-indigo-400">Campos Personalizados:</span> Cruciais para integração (ex: endereço). Devem manter o formato do CRM Web e <span class="text-yellow-300 font-extrabold uppercase">NÃO podem usar autofill</span> (Google Maps).
+A               </div>
                 </div>
             </div>
            
+        </div>                <div class="node text-left w-full lg:w-2/3 bg-gray-800/80 border border-gray-600 text-gray-200 p-4 mt-6">
+            <p class="text-xl font-extrabold text-white mb-3">🖥️ Quais sistemas se integram com o RD?</p>
+            <p class="text-sm font-light text-gray-300 mb-4">
+                O RD Station CRM (RD) se integra com vários sistemas, sendo que o foco principal da integração atual e do projeto de onboarding é a comunicação com o sistema interno da Pamcary e um sistema externo de apólices.
+            </p>
+            <p class="text-sm font-light text-gray-300 mb-4">
+                Os principais sistemas que se integram com o RD são:
+            </p>
+    
+            <div class="space-y-5 text-sm font-normal text-gray-300">
+                                <div>
+                    <p class="text-lg font-bold text-blue-300 mb-2">Sistemas de Negócio e Operacionais</p>
+                    
+                    <p class="font-semibold text-yellow-400 mt-3">1. CRM Web (CRM Interno da Pamcary)</p>
+                    <ul class="list-disc list-inside ml-4 space-y-1 mt-1">
+                        <li>O CRM Web é um sistema interno da Pamcary.</li>
+                        <li>A integração entre o RD CRM e o CRM Web é realizada para o Funil de Transportes (SEDEG).</li>
+                        <li>Os dados são integrados entre o RD e o CRM Web com base em cadastros realizados em uma tabela.</li>
+                        <li>Um dos objetivos do projeto é que, ao cadastrar um novo cliente no RD, a informação já integre automaticamente com o CRM Web, eliminando a necessidade de um cadastro duplicado.</li>
+Am                     <li>O campo <span class="text-white font-semibold">Responsável</span> no RD, por exemplo, é associado a um código de hierarquia e a um código de setor no CRM Web. Essa comunicação está funcionando perfeitamente.</li>
+                    </ul>
+    
+                    <p class="font-semibold text-yellow-400 mt-3">2. Quiver</p>
+                    <ul class="list-disc list-inside ml-4 space-y-1 mt-1">
+                        <li>O Quiver é um sistema externo de gerenciamento de apólices.</li>
+                        <li>A integração com o Quiver é aplicada ao Funil Caminhão (GEAVE).</li>
+                        <li>Quando a negociação avança para a etapa de cotação no RD, e os campos obrigatórios são preenchidos, um orçamento é aberto automaticamente no Quiver.</li>
+i                     <li>O Quiver retorna informações ao RD, como o status da negociação (ganha ou perdida), que atualiza a negociação no painel do RD.</li>
+                        <li>A integração do Quiver envolve o campo <span class="text-white font-semibold">Campanha</span> e o <span class="text-white font-semibold">Motivo de Perda</span>, que atualmente dependem de uma tabela de DE/PARA para gerar o código correspondente.</li>
+                    </ul>
+    
+                    <p class="font-semibold text-yellow-400 mt-3">3. SIGS (Sistema de Geração de Propostas)</p>
+                    <ul class="list-disc list-inside ml-4 space-y-1 mt-1">
+                        <li>O SIGS é um sistema interno da Pamcary utilizado para gerar a proposta personalizada, especialmente para o funil de Transportes.</li>
+i                     <li>Embora a proposta seja gerada no SIGS, a comunicação direta entre o RD e o SIGS é considerada uma <span class="text-white font-semibold">ideia de futuro</span>.</li>
+                    </ul>
+                </div>
+    
+                                <div>
+                    <p class="text-lg font-bold text-blue-300 mb-2">Sistemas de Intermediação e Arquitetura</p>
+                    <p class="mb-2">
+                        A comunicação entre o RD e os sistemas alvo (CRM Web e Quiver) é feita via API. O projeto de onboarding prevê a implementação de uma camada de intermediação para otimizar o fluxo de dados e eliminar o trabalho manual de DE/PARA (de/para).
+A               </p>
+                    <p>Os componentes/ferramentas de arquitetura envolvidos são:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-1 mt-1">
+                        <li><span class="text-white font-semibold">API (Application Programming Interface):</span> A integração é feita via API, que foi construída por uma consultoria externa. O projeto prevê a implementação de até 3 APIs e plugins na Fase 3 do projeto de Integração.</li>
+                        <li><span class="text-white font-semibold">iPaaS (Integration Platform as a Service):</span> Planejado para ser instalado na Fase 3 do projeto de Integração.</li>
+                        <li><span class="text-white font-semibold">Banco de Dados Próprio da Pamcary:</span> Há discussões sobre a possibilidade de utilizar um banco de dados próprio da Pamcary (que usa Postgre) como ponto de passagem ou intermediador (middleware) para a integração dos dados, em vez de hospedar esses dados no RD.</li>
+A                     <li><span class="text-white font-semibold">N8N:</span> Mencionado como uma possível ferramenta de integração intermediadora (middleware), caso o uso de um banco de dados próprio não seja a solução escolhida.</li>
+                    </ul>
+                </div>
+    
+                Do             <div>
+                    <p class="text-lg font-bold text-blue-300 mb-2">Outras Integrações e Sistemas Relacionados</p>
+                    <ul class="list-disc list-inside ml-4 space-y-1 mt-1">
+                        <li><span class="text-white font-semibold">RD RD:</span> O cronograma de implementação menciona a integração "RD RD" para o agendamento de oportunidades.</li>
+Am                     <li><span class="text-white font-semibold">CRM (Geral):</span> A arquitetura técnica da Pamcary é composta por camadas, incluindo Front End (usando Angular e Typescript), BackEnd For FrontEnd (BFF) (usando Java 17 e SpringBoot com DB2), e Serviços (API) (usando Java 17 e SpringBoot com Postgree). O RD, por ser o Front-end de vendas, se comunica com estas camadas e serviços internos.</li>
+                        <li><span class="text-white font-semibold">MAAS / Keycloak:</span> A segurança e autenticação das APIs são feitas usando MAAS e Keycloak.</li>
+Também               </ul>
+                </div>
+    
+            </div>
         </div>
-    </div>
 
-</body>
+    </div> </body>
 </html>
