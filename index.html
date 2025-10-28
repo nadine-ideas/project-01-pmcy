@@ -9,7 +9,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0d1117; /* Dark background */
+            background-color: #0d1117; /* Fundo muito escuro */
             min-height: 100vh;
         }
         .node {
@@ -18,44 +18,71 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             transition: transform 0.2s, box-shadow 0.2s;
             position: relative;
-            margin: 1rem;
+            margin: 0.75rem 0; /* Espaçamento ajustado */
             cursor: default;
         }
         .node:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
         }
+
+        /* Nodes Centrais */
         .main-node {
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6); /* Blue gradient */
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6); /* Gradiente Azul */
             color: white;
-            font-size: 1.5rem;
             font-weight: 800;
             border: 4px solid #93c5fd;
             animation: pulse 2s infinite;
+            margin-top: 1rem;
         }
+        .objective-macro-node {
+            background-color: #047857; /* Verde Escuro Sólido para melhor UX */
+            border: 1px solid #34d399;
+            color: #d1fae5;
+        }
+        
+        /* Nodes de Pilar */
         .pillar-node {
             background-color: #1f2937; /* Dark gray */
-            color: #d1d5db;
-            font-weight: 600;
-            border-left: 5px solid #f97316; /* Orange marker */
-            position: relative;
+            color: #f97316; /* Cor do título - Laranja */
+            font-weight: 800;
+            border-left: 5px solid #f97316; /* Marker Laranja */
+            margin-bottom: 0; /* Remove margem abaixo do título do pilar */
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
         }
-        /* Style for the new "Objetivo Principal" sub-node */
         .objective-node {
-            background-color: #4d2d0b; /* Darker Gold/Brown */
-            color: #fcd34d; /* Light Gold */
-            font-size: 1rem;
-            font-weight: 700;
-            border-left: 5px solid #fbbf24; /* Yellow marker */
-            margin-bottom: 1rem;
+            background-color: #4d2d0b; /* Marrom escuro para objetivo */
+            color: #fcd34d; /* Amarelo claro para destaque */
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-left: 5px solid #fbbf24; /* Marker Amarelo */
+            margin: 0; /* Ajuste para encaixe compacto */
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
         }
-        .sub-node {
+
+        /* Sub-Nodes (Boxes de Informação - UX Melhorada) */
+        .sub-node-box {
+            background-color: #1a202c; /* Fundo mais escuro para a caixa de sub-nodes */
+            padding: 0.75rem;
+            border-radius: 0 0 1rem 1rem; /* Borda arredondada apenas na parte inferior */
+            border: 1px solid #374151;
+            border-top: none;
+        }
+        .sub-node-item {
             background-color: #374151; /* Lighter dark gray */
             color: #e5e7eb;
             font-size: 0.875rem;
             margin-top: 0.5rem;
-            border-left: 3px solid #10b981; /* Green marker */
+            padding: 0.75rem; /* Padding reduzido */
+            border-radius: 0.5rem;
+            border-left: 3px solid #10b981; /* Green marker default */
         }
+
+        /* Animação */
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
             70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
@@ -71,7 +98,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 2rem;
+                gap: 1.5rem; /* Reduz o espaçamento vertical entre as seções principais */
             }
         }
         @media (max-width: 1023px) {
@@ -85,14 +112,14 @@
 <body class="p-4 sm:p-8">
 
     <div class="max-w-7xl mx-auto main-map-container">
-                <div class="node main-node text-center w-full lg:w-2/3">
+                <div class="node main-node text-center w-full lg:w-2/3 text-2xl">
             ARQUITETURA DE INTEGRAÇÃO PAMCARY
-            <div class="text-sm font-normal mt-1 opacity-80">(Expansão e Formalização do RD Station CRM)</div>
+            <div class="text-base font-normal mt-1 opacity-90">(Expansão e Formalização do RD Station CRM)</div>
         </div>
 
-                <div class="node text-center w-full lg:w-2/3 bg-green-800/50 border border-green-500 text-green-200 font-semibold p-4">
-            <span class="text-lg font-extrabold text-green-300">OBJETIVOS ESTRATÉGICOS (MACRO)</span>
-            <ul class="list-disc list-inside text-sm mt-2 space-y-1 text-left mx-auto w-fit">
+                <div class="node objective-macro-node text-center w-full lg:w-2/3 p-4">
+            <span class="text-xl font-extrabold text-white">OBJETIVOS ESTRATÉGICOS (MACRO)</span>
+            <ul class="list-disc list-inside text-sm mt-3 space-y-1 text-left mx-auto w-fit font-normal">
                 <li>Escalar o RD CRM para DICOM II e DICOM IV.</li>
                 <li>Formalizar a Camada de Intermediação (iPaaS) na Fase 3.</li>
                 <li>Substituir trabalho manual de ETL (DE/PARA) por automação via integração.</li>
@@ -100,7 +127,7 @@
         </div>
         
                 <div class="node text-left w-full lg:w-2/3 bg-gray-800/80 border border-gray-600 text-gray-200 font-semibold p-4">            
-            <p class="text-xl font-extrabold text-white mb-3">Links Importantes</p>            
+            <p class="text-xl font-extrabold text-white mb-3">🔗 Links Importantes</p>            
             <p class="text-sm mb-4">                
                 <span class="text-yellow-400 font-extrabold">🚨 NOTA DO ANALISTA:</span> Por favor, leia atentamente o <a href="https://docs.google.com/document/d/1sP085Bb-Pb4xUkrrj23Rqrk8LGlbgBndLwU_gfKYGpw/edit?tab=t.0" target="_blank" class="doc-link text-red-400 hover:text-red-300">Bloco de Notas</a> e os demais documentos abaixo para ter a visão completa do escopo e do histórico de decisões.            
             </p>            
@@ -145,87 +172,91 @@
             </div>        
         </div>
        
-                <div class="mind-map-grid grid gap-8 w-full">
+                <div class="mind-map-grid grid gap-4 w-full mt-4">
 
                         <div class="flex flex-col">
-                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
+                <div class="node pillar-node text-xl p-3">
                     1. SISTEMAS CENTRAIS E FUNIS (RD CRM)
                 </div>
-                <div class="ml-4 mt-4 space-y-3">
-                                        <div class="node objective-node">
-                        <span class="font-extrabold">Objetivo Principal:</span> Garantir a escalabilidade e segregação das operações de vendas (funis e equipes) dentro do RD CRM para as novas diretorias (DICOM II e DICOM IV).
+                <div class="node objective-node p-3">
+                    <span class="font-extrabold">Objetivo Principal:</span> Garantir a escalabilidade e segregação das operações de vendas (funis e equipes) dentro do RD CRM para as novas diretorias (DICOM II e DICOM IV).
+                </div>
+                
+                                <div class="sub-node-box space-y-2">
+                    <div class="sub-node-item">
+                        <span class="font-bold text-yellow-400">Escopo:</span> Escalar a implementação para <span class="text-white font-semibold">DICOM II & DICOM IV</span>.
                     </div>
-                                        <div class="node sub-node">
-                        <span class="font-bold text-yellow-400">Escopo:</span> Escalar a implementação para <span class="text-white">DICOM II & DICOM IV</span>.
-                    </div>
-                    <div class="node sub-node">
+                    <div class="sub-node-item">
                         <span class="font-bold text-yellow-400">Necessidade:</span> Criar novos funis e segregação de equipes (e.g., "Vendas Transporte DICOM II").
                     </div>
-                    <div class="node sub-node">
+                    <div class="sub-node-item">
                         <span class="font-bold text-yellow-400">Desafio Atual:</span> Integração olha apenas o sufixo "Vendas Transportes", não segmenta por filial/diretoria.
                     </div>
                 </div>
             </div>
 
                         <div class="flex flex-col">
-                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
+                <div class="node pillar-node text-xl p-3">
                     2. INTEGRAÇÕES CHAVE (Sistemas Conectados)
                 </div>
-                <div class="ml-4 mt-4 space-y-3">
-                                         <div class="node objective-node">
-                        <span class="font-extrabold">Objetivo Principal:</span> Automatizar a comunicação de dados entre o RD CRM e sistemas críticos (CRM Web e Quiver), eliminando a necessidade de processos manuais de DE/PARA.
+                <div class="node objective-node p-3">
+                    <span class="font-extrabold">Objetivo Principal:</span> Automatizar a comunicação de dados entre o RD CRM e sistemas críticos (CRM Web e Quiver), eliminando a necessidade de processos manuais de DE/PARA.
+                </div>
+                
+                                <div class="sub-node-box space-y-2">
+                    <div class="sub-node-item border-l-3 border-l-sky-500">
+                        <span class="font-bold text-sky-400">CRM Web (Interno):</span> Mapeamento automático do campo <span class="text-white font-semibold">Responsável</span> (Hierarquia), eliminando DE/PARA manual.
                     </div>
-                                        <div class="node sub-node p-3 border-l-4 border-l-sky-500">
-                        <span class="font-bold text-sky-400">CRM Web (Interno):</span> Mapeamento automático do campo <span class="text-white">Responsável</span> (Hierarquia), eliminando DE/PARA manual.
+                    <div class="sub-node-item border-l-3 border-l-sky-500">
+                        <span class="font-bold text-sky-400">Quiver (Externo):</span> Automatizar DE/PARA de <span class="text-white font-semibold">Campanha</span> e <span class="text-white font-semibold">Motivo de Perda</span> (Funil Caminhão - GEAVE).
                     </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-sky-500">
-                        <span class="font-bold text-sky-400">Quiver (Externo):</span> Automatizar DE/PARA de <span class="text-white">Campanha</span> e <span class="text-white">Motivo de Perda</span> (Funil Caminhão - GEAVE).
-                    </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-sky-500">
-                        <span class="font-bold text-sky-400">SIGS (Interno):</span> Comunicação direta (Cotação/Proposta) é uma <span class="text-white">Ideia de Futuro</span>.
+                    <div class="sub-node-item border-l-3 border-l-sky-500">
+                        <span class="font-bold text-sky-400">SIGS (Interno):</span> Comunicação direta (Cotação/Proposta) é uma <span class="text-white font-semibold">Ideia de Futuro</span>.
                     </div>
                 </div>
             </div>
 
                         <div class="flex flex-col">
-                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
+                <div class="node pillar-node text-xl p-3">
                     3. CAMADA DE INTEGRAÇÃO (iPaaS/Middleware)
                 </div>
-                <div class="ml-4 mt-4 space-y-3">
-                                        <div class="node objective-node">
-                        <span class="font-extrabold">Objetivo Principal:</span> Formalizar e implementar uma camada de intermediação (iPaaS/Middleware) para centralizar a lógica de transformação de dados (DE/PARA) e garantir a segurança das APIs.
+                <div class="node objective-node p-3">
+                    <span class="font-extrabold">Objetivo Principal:</span> Formalizar e implementar uma camada de intermediação (iPaaS/Middleware) para centralizar a lógica de transformação de dados (DE/PARA) e garantir a segurança das APIs.
+                </div>
+                
+                                <div class="sub-node-box space-y-2">
+                    <div class="sub-node-item border-l-3 border-l-pink-500">
+                        <span class="font-bold text-pink-400">Mecanismo:</span> APIs (Padrão <span class="text-white font-semibold">REST</span>) - Até 3 APIs na Fase 3.
                     </div>
-                                        <div class="node sub-node p-3 border-l-4 border-l-pink-500">
-                        <span class="font-bold text-pink-400">Mecanismo:</span> APIs (Padrão <span class="text-white">REST</span>) - Até 3 APIs na Fase 3.
+                    <div class="sub-node-item border-l-3 border-l-pink-500">
+                        <span class="font-bold text-pink-400">iPaaS:</span> Plataforma de Integração (Previsão: <span class="text-white font-semibold">Fase 3 do Onboarding</span>).
                     </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
-                        <span class="font-bold text-pink-400">iPaaS:</span> Plataforma de Integração (Previsão: <span class="text-white">Fase 3 do Onboarding</span>).
-                    </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
+                    <div class="sub-node-item border-l-3 border-l-pink-500">
                         <span class="font-bold text-pink-400">Função Central:</span> Mapeamento e Transformação de Dados (DE/PARA).
                     </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-pink-500">
-                        <span class="font-bold text-pink-400">Segurança:</span> Autenticação via <span class="text-white">MAAS</span> e <span class="text-white">Keycloak</span> (Bearer/Basic).
+                    <div class="sub-node-item border-l-3 border-l-pink-500">
+                        <span class="font-bold text-pink-400">Segurança:</span> Autenticação via <span class="text-white font-semibold">MAAS</span> e <span class="text-white font-semibold">Keycloak</span> (Bearer/Basic).
                     </div>
                 </div>
             </div>
 
                         <div class="flex flex-col">
-                <div class="node pillar-node border-b-4 border-b-[#f97316] text-xl p-3">
+                <div class="node pillar-node text-xl p-3">
                     4. MAPEAMENTO DE DADOS (DE/PARA) E REGRAS
                 </div>
-                <div class="ml-4 mt-4 space-y-3">
-                                        <div class="node objective-node">
-                        <span class="font-extrabold">Objetivo Principal:</span> Substituir o trabalho manual de ETL por automação, implementando regras de DE/PARA que considerem as novas estruturas (Diretoria/Filial) e requisitos de campo (Customizados).
+                <div class="node objective-node p-3">
+                    <span class="font-extrabold">Objetivo Principal:</span> Substituir o trabalho manual de ETL por automação, implementando regras de DE/PARA que considerem as novas estruturas (Diretoria/Filial) e requisitos de campo (Customizados).
+                </div>
+                
+                                <div class="sub-node-box space-y-2">
+                    <div class="sub-node-item border-l-3 border-l-indigo-500">
+                        <span class="font-bold text-indigo-400">Regra Hierarquia:</span> Incluir campos <span class="text-white font-semibold">Diretoria</span> e <span class="text-white font-semibold">Filial</span> no DE/PARA (<span class="text-sm italic">trds_depara_crm_hierarquia</span>).
                     </div>
-                                        <div class="node sub-node p-3 border-l-4 border-l-indigo-500">
-                        <span class="font-bold text-indigo-400">Regra Hierarquia:</span> Incluir campos <span class="text-white">Diretoria</span> e <span class="text-white">Filial</span> no DE/PARA (<span class="text-sm italic">trds_depara_crm_hierarquia</span>).
-                    </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-indigo-500">
+                    <div class="sub-node-item border-l-3 border-l-indigo-500">
                         <span class="font-bold text-indigo-400">Regra Campanha/Motivo de Perda:</span> Permitir cadastro direto no RD (<span class="text-sm italic">trds_depara_crm_campanha/mot_perda</span>).
                     </div>
-                    <div class="node sub-node p-3 border-l-4 border-l-indigo-500">
-                        <span class="font-bold text-indigo-400">Campos Personalizados:</span> Cruciais para integração (ex: endereço). Devem manter o formato do CRM Web e <span class="text-red-400">NÃO podem usar autofill</span> (Google Maps).
+                    <div class="sub-node-item border-l-3 border-l-indigo-500">
+                        <span class="font-bold text-indigo-400">Campos Personalizados:</span> Cruciais para integração (ex: endereço). Devem manter o formato do CRM Web e <span class="text-red-400 font-semibold">NÃO podem usar autofill</span> (Google Maps).
                     </div>
                 </div>
             </div>
